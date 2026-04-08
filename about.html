@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Наша История · Рустам & Малика</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:wght@200;300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+:root{
+  --obsidian:#080810;--deep:#0E0E1A;
+  --rose:#C8566A;--rose-bright:#E8607A;--rose-dim:#8B3A4A;
+  --gold:#D4A843;--gold-bright:#F0C060;--gold-pale:#F5DFA0;
+  --teal:#2EC4B6;--teal-dim:#1A7A74;
+  --plum:#5C2D6E;--plum-bright:#8B4FA0;
+  --silver:#B8BAC8;--silver-dim:rgba(184,186,200,0.35);
+  --text:#EEEEf5;--text-muted:rgba(238,238,245,0.45);
+  --glow-rose:0 0 60px rgba(200,86,106,0.25);
+  --glow-gold:0 0 60px rgba(212,168,67,0.2);
+  --glow-teal:0 0 60px rgba(46,196,182,0.2);
+}
+body{background:var(--obsidian);color:var(--text);font-family:'Raleway',sans-serif;overflow-x:hidden;cursor:none;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:0.028;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+#cursor{position:fixed;width:8px;height:8px;border-radius:50%;background:var(--rose);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.3s,height 0.3s;}
+#cursor-ring{position:fixed;width:36px;height:36px;border-radius:50%;border:1px solid rgba(200,86,106,0.5);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.3s,height 0.3s,border-color 0.3s;}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.8rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:background 0.6s,padding 0.4s;}
+nav.scrolled{background:rgba(8,8,16,0.88);backdrop-filter:blur(24px);padding:1.1rem 4rem;border-bottom:1px solid rgba(212,168,67,0.12);}
+.nav-brand{font-family:'Great Vibes',cursive;font-size:2.2rem;color:var(--gold);text-decoration:none;text-shadow:0 0 30px rgba(212,168,67,0.5);}
+.nav-links{display:flex;gap:2.8rem;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--silver);font-size:0.67rem;letter-spacing:0.28em;text-transform:uppercase;position:relative;transition:color 0.3s;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:linear-gradient(90deg,var(--rose),var(--gold));transition:width 0.4s;}
+.nav-links a:hover{color:var(--text);}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+.nav-links a.active{color:var(--gold);}
+.nav-rsvp{font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;padding:0.65rem 1.8rem;border:1px solid var(--rose-dim);background:transparent;color:var(--rose);font-family:'Raleway',sans-serif;cursor:pointer;transition:all 0.4s;}
+.nav-rsvp:hover{background:var(--rose);color:#fff;}
+
+/* PAGE HERO */
+.ph{min-height:60vh;display:flex;align-items:flex-end;justify-content:center;padding:0 2rem 6rem;position:relative;overflow:hidden;}
+.ph-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 30% 50%,rgba(92,45,110,0.4) 0%,transparent 60%),radial-gradient(ellipse 50% 60% at 80% 30%,rgba(200,86,106,0.2) 0%,transparent 60%),linear-gradient(180deg,#0D0D1E,#080810);}
+.ph-canvas{position:absolute;inset:0;z-index:1;}
+.ph-content{position:relative;z-index:2;text-align:center;padding-top:8rem;}
+.ph-tag{font-size:0.58rem;letter-spacing:0.45em;text-transform:uppercase;background:linear-gradient(90deg,var(--rose),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:1.5rem;animation:fsu 1s both;}
+.ph-title{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,9vw,7rem);font-weight:400;line-height:0.95;animation:fsu 1s 0.15s both;}
+.ph-title em{font-style:italic;background:linear-gradient(135deg,var(--gold-bright),var(--rose-bright));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.ph-sub{font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-muted);margin-top:2rem;animation:fsu 1s 0.3s both;}
+@keyframes fsu{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+
+.s-label{font-size:0.58rem;letter-spacing:0.45em;text-transform:uppercase;background:linear-gradient(90deg,var(--rose),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;display:block;margin-bottom:1.2rem;}
+.s-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:400;text-align:center;line-height:1.15;color:var(--text);margin-bottom:1.5rem;}
+.s-title em{font-style:italic;color:var(--gold);}
+.s-rule{display:flex;align-items:center;gap:1.5rem;justify-content:center;margin-bottom:4rem;}
+.s-rule-line{width:80px;height:1px;background:linear-gradient(90deg,transparent,rgba(212,168,67,0.4));}
+.s-rule-line.r{transform:scaleX(-1);}
+.s-rule-gem{width:6px;height:6px;border:1px solid var(--gold);transform:rotate(45deg);box-shadow:0 0 10px rgba(212,168,67,0.4);}
+
+/* INTRO BLOCK */
+.intro-sec{padding:7rem 2rem;overflow:hidden;}
+.intro-inner{max-width:900px;margin:0 auto;text-align:center;}
+.intro-quote{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-style:italic;line-height:1.7;color:var(--text);margin-bottom:2.5rem;position:relative;}
+.intro-quote::before,.intro-quote::after{font-size:6rem;color:rgba(212,168,67,0.12);font-family:'Playfair Display',serif;line-height:1;position:absolute;}
+.intro-quote::before{content:'"';top:-2rem;left:-1rem;}
+.intro-quote::after{content:'"';bottom:-4rem;right:-1rem;}
+.intro-body{font-size:0.87rem;color:var(--text-muted);line-height:2.2;font-weight:300;max-width:640px;margin:0 auto;}
+
+/* STORY CHAPTERS */
+.chapters-sec{padding:5rem 2rem 7rem;overflow:hidden;}
+.chapters-inner{max-width:1100px;margin:0 auto;}
+.chapter-item{
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+  margin-bottom:8rem;position:relative;
+}
+.chapter-item:last-child{margin-bottom:0;}
+.chapter-item:nth-child(even){direction:rtl;}
+.chapter-item:nth-child(even)>*{direction:ltr;}
+
+.ch-visual{
+  position:relative;height:420px;
+  border:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:1.2rem;
+  overflow:hidden;
+  background:linear-gradient(135deg,rgba(255,255,255,0.02),rgba(255,255,255,0.005));
+}
+.ch-visual::before{
+  content:'';position:absolute;inset:0;
+  background:var(--ch-grad,linear-gradient(135deg,rgba(212,168,67,0.08) 0%,transparent 60%));
+  transition:opacity 0.5s;
+}
+.ch-visual:hover{border-color:rgba(212,168,67,0.2);}
+.ch-num-bg{
+  font-family:'Playfair Display',serif;font-size:10rem;font-weight:700;
+  color:rgba(255,255,255,0.025);position:absolute;bottom:-2rem;right:-1rem;
+  line-height:1;pointer-events:none;
+}
+.ch-icon{font-size:3rem;color:rgba(212,168,67,0.3);position:relative;z-index:1;transition:transform 0.4s;}
+.ch-visual:hover .ch-icon{transform:scale(1.2);}
+.ch-caption{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;color:var(--text-muted);position:relative;z-index:1;}
+.ch-year-badge{
+  position:absolute;top:1.5rem;left:1.5rem;
+  padding:0.4rem 1rem;border:1px solid rgba(212,168,67,0.25);
+  font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);
+  background:rgba(212,168,67,0.05);
+}
+
+.ch-text{}
+.ch-num{font-size:0.6rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--rose-bright);margin-bottom:0.75rem;}
+.ch-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,2.8rem);line-height:1.2;margin-bottom:1.5rem;color:var(--text);}
+.ch-body{font-size:0.84rem;color:var(--text-muted);line-height:2.1;font-weight:300;margin-bottom:2rem;}
+.ch-tags{display:flex;gap:0.75rem;flex-wrap:wrap;}
+.ch-tag{
+  padding:0.3rem 1rem;border:1px solid rgba(255,255,255,0.07);
+  font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);
+  transition:all 0.3s;
+}
+.ch-tag:hover{border-color:var(--gold);color:var(--gold);}
+
+/* CHAPTER COLORS */
+.chapter-item:nth-child(1) .ch-visual{--ch-grad:linear-gradient(135deg,rgba(212,168,67,0.1) 0%,transparent 60%);}
+.chapter-item:nth-child(1) .ch-icon{color:rgba(212,168,67,0.4);}
+.chapter-item:nth-child(1) .ch-year-badge{border-color:rgba(212,168,67,0.25);color:var(--gold);}
+.chapter-item:nth-child(2) .ch-visual{--ch-grad:linear-gradient(135deg,rgba(200,86,106,0.1) 0%,transparent 60%);}
+.chapter-item:nth-child(2) .ch-icon{color:rgba(200,86,106,0.4);}
+.chapter-item:nth-child(2) .ch-year-badge{border-color:rgba(200,86,106,0.25);color:var(--rose-bright);}
+.chapter-item:nth-child(2) .ch-num{color:var(--rose-bright);}
+.chapter-item:nth-child(3) .ch-visual{--ch-grad:linear-gradient(135deg,rgba(46,196,182,0.08) 0%,transparent 60%);}
+.chapter-item:nth-child(3) .ch-icon{color:rgba(46,196,182,0.4);}
+.chapter-item:nth-child(3) .ch-year-badge{border-color:rgba(46,196,182,0.25);color:var(--teal);}
+.chapter-item:nth-child(3) .ch-num{color:var(--teal);}
+.chapter-item:nth-child(4) .ch-visual{--ch-grad:linear-gradient(135deg,rgba(139,79,160,0.1) 0%,transparent 60%);}
+.chapter-item:nth-child(4) .ch-icon{color:rgba(139,79,160,0.4);}
+.chapter-item:nth-child(4) .ch-year-badge{border-color:rgba(139,79,160,0.25);color:var(--plum-bright);}
+.chapter-item:nth-child(4) .ch-num{color:var(--plum-bright);}
+
+/* VALUES */
+.values-sec{
+  padding:7rem 2rem;
+  background:linear-gradient(180deg,var(--obsidian),#0C0C20,var(--obsidian));
+  overflow:hidden;position:relative;
+}
+.values-sec::before{
+  content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:700px;height:700px;
+  background:radial-gradient(ellipse,rgba(92,45,110,0.15) 0%,transparent 65%);
+  pointer-events:none;
+}
+.values-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1rem;}
+.v-card{
+  padding:3rem 2.5rem;border:1px solid rgba(255,255,255,0.05);
+  text-align:center;position:relative;overflow:hidden;
+  background:linear-gradient(145deg,rgba(255,255,255,0.025),rgba(255,255,255,0.01));
+  transition:all 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+.v-card::before{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:var(--vc,linear-gradient(90deg,transparent,var(--gold),transparent));
+  transform:scaleX(0);transition:transform 0.5s;transform-origin:center;
+}
+.v-card:nth-child(2)::before{--vc:linear-gradient(90deg,transparent,var(--rose),transparent);}
+.v-card:nth-child(3)::before{--vc:linear-gradient(90deg,transparent,var(--teal),transparent);}
+.v-card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,0.1);box-shadow:0 20px 60px rgba(0,0,0,0.4);}
+.v-card:hover::before{transform:scaleX(1);}
+.v-icon{
+  width:70px;height:70px;border-radius:50%;margin:0 auto 2rem;
+  border:1px solid rgba(212,168,67,0.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;color:var(--gold);
+  background:rgba(212,168,67,0.05);
+  transition:all 0.4s;
+}
+.v-card:nth-child(2) .v-icon{border-color:rgba(200,86,106,0.25);color:var(--rose-bright);background:rgba(200,86,106,0.05);}
+.v-card:nth-child(3) .v-icon{border-color:rgba(46,196,182,0.25);color:var(--teal);background:rgba(46,196,182,0.05);}
+.v-card:hover .v-icon{transform:scale(1.1) rotate(5deg);box-shadow:var(--glow-gold);}
+.v-card:nth-child(2):hover .v-icon{box-shadow:var(--glow-rose);}
+.v-card:nth-child(3):hover .v-icon{box-shadow:var(--glow-teal);}
+.v-title{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:1rem;color:var(--text);}
+.v-desc{font-size:0.8rem;color:var(--text-muted);line-height:1.9;font-weight:300;}
+
+/* BIG QUOTE */
+.bq-sec{
+  padding:9rem 2rem;text-align:center;
+  background:linear-gradient(135deg,rgba(8,8,16,1) 0%,rgba(12,10,20,1) 50%,rgba(8,8,16,1) 100%);
+  position:relative;overflow:hidden;
+}
+.bq-sec::before{
+  content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:500px;height:500px;
+  background:radial-gradient(ellipse,rgba(200,86,106,0.07) 0%,transparent 70%);
+}
+.bq{
+  font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.8rem);
+  font-style:italic;font-weight:400;line-height:1.65;
+  max-width:850px;margin:0 auto;
+  background:linear-gradient(135deg,var(--text) 0%,rgba(238,238,245,0.6) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  position:relative;z-index:1;
+}
+.bq-author{font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-muted);margin-top:2.5rem;display:block;}
+
+footer{background:#040408;padding:4rem 2rem;text-align:center;position:relative;overflow:hidden;border-top:1px solid rgba(212,168,67,0.08);}
+footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:400px;height:1px;background:linear-gradient(90deg,transparent,rgba(212,168,67,0.5),transparent);}
+.footer-logo{font-family:'Great Vibes',cursive;font-size:3rem;color:var(--gold);display:block;margin-bottom:1.5rem;}
+.footer-date{font-size:0.6rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2.5rem;}
+.footer-links{display:flex;gap:2.5rem;justify-content:center;list-style:none;margin-bottom:2.5rem;}
+.footer-links a{text-decoration:none;color:var(--text-muted);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;transition:color 0.3s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-copy{font-size:0.65rem;color:rgba(255,255,255,0.12);letter-spacing:0.1em;}
+.footer-copy a{color:var(--rose-dim);text-decoration:none;}
+
+.reveal{opacity:0;transform:translateY(50px);transition:opacity 0.9s cubic-bezier(0.22,1,0.36,1),transform 0.9s cubic-bezier(0.22,1,0.36,1);}
+.reveal.d1{transition-delay:0.1s;}.reveal.d2{transition-delay:0.2s;}.reveal.d3{transition-delay:0.3s;}
+.revealed{opacity:1;transform:none;}
+
+.btn-secondary{padding:1rem 3rem;border:1px solid rgba(212,168,67,0.4);background:transparent;color:var(--gold);font-family:'Raleway',sans-serif;font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;cursor:pointer;font-weight:400;text-decoration:none;display:inline-block;transition:all 0.4s;clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%);}
+.btn-secondary:hover{border-color:var(--gold);background:rgba(212,168,67,0.08);box-shadow:var(--glow-gold);}
+
+@media(max-width:768px){
+  nav{padding:1.2rem 1.5rem;}
+  .nav-links{gap:1.2rem;}
+  .nav-rsvp{display:none;}
+  .chapter-item{grid-template-columns:1fr;gap:2rem;direction:ltr!important;}
+  .ch-visual{height:260px;}
+  .values-grid{grid-template-columns:1fr;}
+  #cursor,#cursor-ring{display:none;}
+  body{cursor:auto;}
+}
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<nav id="navbar">
+  <a href="index.html" class="nav-brand">R & M</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Главная</a></li>
+    <li><a href="about.html" class="active">История</a></li>
+    <li><a href="gallery.html">Галерея</a></li>
+    <li><a href="contact.html">Контакты</a></li>
+  </ul>
+  <button class="nav-rsvp" onclick="location.href='contact.html'">Подтвердить</button>
+</nav>
+
+<div class="ph">
+  <div class="ph-bg"></div>
+  <canvas class="ph-canvas" id="phCanvas"></canvas>
+  <div class="ph-content">
+    <span class="ph-tag">С самого начала</span>
+    <h1 class="ph-title">Наша <em>История</em></h1>
+    <p class="ph-sub">Путь двух сердец · 2023 — 2027</p>
+  </div>
+</div>
+
+<section class="intro-sec">
+  <span class="s-label reveal">Пролог</span>
+  <h2 class="s-title reveal">История <em>двух душ</em></h2>
+  <div class="s-rule reveal"><div class="s-rule-line"></div><div class="s-rule-gem"></div><div class="s-rule-line r"></div></div>
+  <div class="intro-inner">
+    <p class="intro-quote reveal">Они не искали друг друга. Они просто нашли — в самый неожиданный момент, в самом неожиданном месте.</p>
+    <p class="intro-body reveal d1">Это история двух людей, чьи пути пересеклись совершенно случайно, но именно эта случайность оказалась величайшей закономерностью в их жизни. История, в которой один взгляд изменил всё. Один разговор открыл новый мир. И одно решение связало две судьбы воедино — на всю оставшуюся жизнь.</p>
+  </div>
+</section>
+
+<section class="chapters-sec">
+  <div class="chapters-inner">
+    <div class="chapter-item reveal">
+      <div class="ch-visual">
+        <div class="ch-num-bg">01</div>
+        <div class="ch-year-badge">Осень 2023</div>
+        <span class="ch-icon">✦</span>
+        <span class="ch-caption">Момент встречи</span>
+      </div>
+      <div class="ch-text">
+        <p class="ch-num">Глава первая</p>
+        <h3 class="ch-title">Первая Встреча</h3>
+        <p class="ch-body">Всё начинается с одного мгновения. Когда Рустам и Малика встретились впервые, ни один из них не подозревал, что этот обычный осенний день изменит их жизни навсегда.<br><br>Взгляд, тихая улыбка, первые несколько слов — и оба почувствовали: что-то здесь не случайно. Мир как будто сделал паузу именно для них двоих.</p>
+        <div class="ch-tags">
+          <span class="ch-tag">Ташкент</span>
+          <span class="ch-tag">Осень 2023</span>
+          <span class="ch-tag">Судьба</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter-item reveal">
+      <div class="ch-visual">
+        <div class="ch-num-bg">02</div>
+        <div class="ch-year-badge">Зима 2023</div>
+        <span class="ch-icon">◈</span>
+        <span class="ch-caption">Первое свидание</span>
+      </div>
+      <div class="ch-text">
+        <p class="ch-num">Глава вторая</p>
+        <h3 class="ch-title">Первое Свидание</h3>
+        <p class="ch-body">Первое свидание — это всегда особое волнение. Каждое слово взвешивается, каждый взгляд имеет значение. В тот зимний вечер за тихим разговором и чашкой чая родилось нечто настоящее.<br><br>Чувство, которое невозможно объяснить, но невозможно и проигнорировать. Рустам и Малика поняли: это только начало чего-то очень важного.</p>
+        <div class="ch-tags">
+          <span class="ch-tag">Зима 2023</span>
+          <span class="ch-tag">Первый вечер</span>
+          <span class="ch-tag">Начало</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter-item reveal">
+      <div class="ch-visual">
+        <div class="ch-num-bg">03</div>
+        <div class="ch-year-badge">Лето 2025</div>
+        <span class="ch-icon">◉</span>
+        <span class="ch-caption">Путешествие вместе</span>
+      </div>
+      <div class="ch-text">
+        <p class="ch-num">Глава третья</p>
+        <h3 class="ch-title">Новые Горизонты</h3>
+        <p class="ch-body">Первое путешествие вместе открыло новые горизонты — не только географические, но и внутренние. Когда двое открывают мир вместе, они одновременно открывают и друг друга.<br><br>Каждый новый город, каждый закат, каждый смех в дороге делал их связь крепче. Они поняли: рядом с правильным человеком любое место становится домом.</p>
+        <div class="ch-tags">
+          <span class="ch-tag">Путешествие</span>
+          <span class="ch-tag">Лето 2025</span>
+          <span class="ch-tag">Вместе</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter-item reveal">
+      <div class="ch-visual">
+        <div class="ch-num-bg">04</div>
+        <div class="ch-year-badge">Весна 2026</div>
+        <span class="ch-icon">✧</span>
+        <span class="ch-caption">Помолвка</span>
+      </div>
+      <div class="ch-text">
+        <p class="ch-num">Глава четвёртая</p>
+        <h3 class="ch-title">Навсегда Вместе</h3>
+        <p class="ch-body">Весенний вечер. Закат над городом. Рустам опустился на одно колено — и в этот момент время остановилось. Малика, с дрожащим сердцем и слезами, которые невозможно было сдержать, произнесла единственное слово: «Да».<br><br>В тот миг две отдельные жизни превратились в одну общую судьбу. Судьбу, которую они будут писать вместе — долго, счастливо и с безмерной любовью.</p>
+        <div class="ch-tags">
+          <span class="ch-tag">Помолвка</span>
+          <span class="ch-tag">Весна 2026</span>
+          <span class="ch-tag">Навсегда</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="values-sec">
+  <div class="values-inner">
+    <span class="s-label reveal">Что нас объединяет</span>
+    <h2 class="s-title reveal">Основа нашего <em>союза</em></h2>
+    <div class="s-rule reveal"><div class="s-rule-line"></div><div class="s-rule-gem"></div><div class="s-rule-line r"></div></div>
+    <div class="values-grid">
+      <div class="v-card reveal d1">
+        <div class="v-icon">✦</div>
+        <h3 class="v-title">Доверие</h3>
+        <p class="v-desc">Фундамент, на котором строится всё. Мы доверяем друг другу безоговорочно — и это делает нас несокрушимыми.</p>
+      </div>
+      <div class="v-card reveal d2">
+        <div class="v-icon">♡</div>
+        <h3 class="v-title">Любовь</h3>
+        <p class="v-desc">Та самая любовь, которая превращает обычные дни в особенные, а сложные моменты — в преодолимые вместе.</p>
+      </div>
+      <div class="v-card reveal d3">
+        <div class="v-icon">◈</div>
+        <h3 class="v-title">Уважение</h3>
+        <p class="v-desc">Мы видим и принимаем друг друга такими, какие мы есть — со всеми особенностями, мечтами и несовершенствами.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bq-sec">
+  <p class="bq reveal">Не важно, сколько времени вы провели в поиске. Важно, что когда вы нашли — вы сразу поняли: это именно оно.</p>
+  <span class="bq-author reveal d1">Рустам & Малика · 2027</span>
+  <div style="margin-top:3rem;" class="reveal d2"><a href="index.html" class="btn-secondary">На главную</a></div>
+</section>
+
+<footer>
+  <span class="footer-logo">Рустам & Малика</span>
+  <p class="footer-date">Сентябрь 2027 · Ташкент, Узбекистан</p>
+  <ul class="footer-links">
+    <li><a href="index.html">Главная</a></li>
+    <li><a href="about.html">История</a></li>
+    <li><a href="gallery.html">Галерея</a></li>
+    <li><a href="contact.html">Контакты</a></li>
+  </ul>
+  <p class="footer-copy">© 2027 Свадьба Рустама и Малики · <a href="https://t.me/WebFlow_TC">TC Digital</a></p>
+</footer>
+
+<script>
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
+animRing();
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+// mini particles for page hero
+const c=document.getElementById('phCanvas');
+if(c){
+  const ctx=c.getContext('2d');
+  c.width=window.innerWidth;c.height=c.parentElement.offsetHeight||window.innerHeight*0.6;
+  const pts=Array.from({length:60},()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.5+0.3,s:Math.random()*0.3+0.1,col:['rgba(212,168,67,','rgba(200,86,106,','rgba(46,196,182,'][Math.floor(Math.random()*3)],t:Math.random()*Math.PI*2,ts:Math.random()*0.02+0.005}));
+  function drawPh(){ctx.clearRect(0,0,c.width,c.height);pts.forEach(p=>{p.y-=p.s;p.t+=p.ts;if(p.y<-5)p.y=c.height+5;const o=0.3+Math.sin(p.t)*0.3;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.col+o+')';ctx.fill();});requestAnimationFrame(drawPh);}
+  drawPh();
+}
+const rev=document.querySelectorAll('.reveal');
+new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('revealed');});},{threshold:0.08}).observe||rev.forEach(r=>{new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('revealed');});},{threshold:0.08}).observe(r);});
+// simpler:
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('revealed');});},{threshold:0.08});
+rev.forEach(r=>io.observe(r));
+</script>
+</body>
+</html>
